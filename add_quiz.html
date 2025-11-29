@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Quiz - Quiz Comptabilité</title>
+    <link rel="stylesheet" href="qcm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .row-inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .row-inputs input {
+            flex: 1;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            box-sizing: border-box;
+            font-size: 1rem;
+            min-height: 100px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Quiz Compta</div>
+        <div class="nav-user">
+            <button onclick="window.location.href='qcm.html'" class="nav-btn">Retour au Quiz</button>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <h1 style="text-align: center;">Ajouter un nouveau Quiz</h1>
+
+        <div class="form-group">
+            <label>Question</label>
+            <textarea id="question" placeholder="Entrez l'énoncé de la question..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Image (Optionnel)</label>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label>Journal Correct</label>
+            <select id="journal">
+                <option value="achat">Achat</option>
+                <option value="vente">Vente</option>
+                <option value="caisse">Caisse</option>
+                <option value="banque">Banque</option>
+                <option value="od">Opération diverse</option>
+            </select>
+        </div>
+
+        <h3>Écritures Comptables Correctes</h3>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Remplissez les 3 lignes (laissez 0 si vide)</p>
+
+        <div id="rows-container">
+            <!-- Row 1 -->
+            <div class="row-inputs">
+                <input type="text" id="cpt_1" placeholder="Compte 1">
+                <input type="number" id="mnt_d1" placeholder="Débit 1" value="0">
+                <input type="number" id="mnt_c1" placeholder="Crédit 1" value="0">
+            </div>
+            <!-- Row 2 -->
+            <div class="row-inputs">
+                <input type="text" id="cpt_2" placeholder="Compte 2">
+                <input type="number" id="mnt_d2" placeholder="Débit 2" value="0">
+                <input type="number" id="mnt_c2" placeholder="Crédit 2" value="0">
+            </div>
+            <!-- Row 3 -->
+            <div class="row-inputs">
+                <input type="text" id="cpt_3" placeholder="Compte 3">
+                <input type="number" id="mnt_d3" placeholder="Débit 3" value="0">
+                <input type="number" id="mnt_c3" placeholder="Crédit 3" value="0">
+            </div>
+        </div>
+
+        <button onclick="saveQuiz()" style="margin-top: 20px;">Enregistrer le Quiz</button>
+    </div>
+
+    <script>
+        function saveQuiz() {
+            const question = document.getElementById('question').value;
+            const journal = document.getElementById('journal').value;
+            const imageInput = document.getElementById('imageInput');
+
+            if (!question) {
+                alert("Veuillez entrer une question.");
+                return;
+            }
+
+            const newQuiz = {
+                question: question,
+                journal: journal,
+                cpt_1: document.getElementById('cpt_1').value,
+                cpt_2: document.getElementById('cpt_2').value,
+                cpt_3: document.getElementById('cpt_3').value,
+                mnt_d1: parseFloat(document.getElementById('mnt_d1').value) || 0,
+                mnt_d2: parseFloat(document.getElementById('mnt_d2').value) || 0,
+                mnt_d3: parseFloat(document.getElementById('mnt_d3').value) || 0,
+                mnt_c1: parseFloat(document.getElementById('mnt_c1').value) || 0,
+                mnt_c2: parseFloat(document.getElementById('mnt_c2').value) || 0,
+                mnt_c3: parseFloat(document.getElementById('mnt_c3').value) || 0,
+                facture: "./img/0.png" // Default image
+            };
+
+            // Handle Image
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    newQuiz.facture = e.target.result; // Base64 string
+                    saveToStorage(newQuiz);
+                };
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                saveToStorage(newQuiz);
+            }
+        }
+
+        function saveToStorage(quiz) {
+            let customQuizzes = JSON.parse(localStorage.getItem('custom_quizzes')) || [];
+            customQuizzes.push(quiz);
+            localStorage.setItem('custom_quizzes', JSON.stringify(customQuizzes));
+
+            alert("Quiz ajouté avec succès !");
+            window.location.href = 'qcm.html';
+        }
+    </script>
+</body>
+
+</html>

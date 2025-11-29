@@ -1,0 +1,72 @@
+let quizs = [
+    {
+        question: "Impression d'un catalogue des produit ,chez imprimerie AL ANWAR à 2870,40 dh dont tva 20%",
+        journal: "achat",
+        cpt_1: "6111",
+        cpt_2: "3455",
+        cpt_3: "4411",
+        mnt_d1: 2392,
+        mnt_d2: 478.40,
+        mnt_d3: 0,
+        mnt_c1: 0,
+        mnt_c2: 0,
+        mnt_c3: 2870.40,
+        facture: "./img/0.PNG"
+    },
+    {
+        question: "Achat de 4 impriment 1 scanaire,5 pc  dont tva 20%",
+        journal: "achat",
+        cpt_1: "2222",
+        cpt_2: "4411",
+        cpt_3: "3455",
+        mnt_d1: 49750,
+        mnt_d2: 0,
+        mnt_d3: 0,
+        mnt_c1: 0,
+        mnt_c2: 49750,
+        mnt_c3: 0,
+        facture: "./img/1.PNG"
+    },
+    {
+        question: "Achat de 4 armoire en allminum ,30 chaises et 5 bureau, dont tva 20%",
+        journal: "achat",
+        cpt_1: "2222",
+        cpt_2: "3455",
+        cpt_3: "4411",
+        mnt_d1: 6000,
+        mnt_d2: 0,
+        mnt_d3: 0,
+        mnt_c1: 0,
+        mnt_c2: 1000,
+        mnt_c3: 5000,
+        facture: "./img/1.PNG"
+    },
+    {
+        question: "frais de mise en services les pc et les imprimante instalation et formatage,dont tva 0% il s'agit d'un autoentrepreneur ",
+        journal: "achat",
+        cpt_1: "6125",
+        cpt_2: "3455",
+        cpt_3: "4411",
+        mnt_d1: 1300,
+        mnt_d2: 200,
+        mnt_d3: 0,
+        mnt_c1: 0,
+        mnt_c2: 0,
+        mnt_c3: 1500,
+        facture: "./img/2.PNG"
+    },
+    {
+        question: "Réglement facture de l'eau et electricité 1500 dh dont tva 7%",
+        journal: "achat",
+        cpt_1: "6125",
+        cpt_2: "3455",
+        cpt_3: "4411",
+        mnt_d1: 1300,
+        mnt_d2: 200,
+        mnt_d3: 0,
+        mnt_c1: 0,
+        mnt_c2: 0,
+        mnt_c3: 1500,
+        facture: "./img/0.PNG"
+    }
+];

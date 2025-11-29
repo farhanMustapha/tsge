@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Comptabilité</title>
+    <link rel="stylesheet" href="qcm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Quiz Compta</div>
+        <div class="nav-user">
+            <span id="user-name">Utilisateur</span>
+            <button onclick="window.location.href='add_quiz.html'" class="nav-btn"
+                style="background-color: #2ecc71;">Ajouter un quiz</button>
+            <button onclick="resetProgress()" class="nav-btn reset-btn">Réinitialiser</button>
+            <button onclick="logoutUser()" class="nav-btn logout-btn">Déconnexion</button>
+        </div>
+    </nav>
+
+    <div class="main_page">
+        <div class="partie_left">
+            <h1>Quiz Comptabilité</h1>
+            <p id="qst">Question...</p>
+
+            <div class="form-group">
+                <select name="journal" id="jrnl">
+                    <option value="">Choisir un journal</option>
+                    <option value="achat">Achat</option>
+                    <option value="vente">Vente</option>
+                    <option value="caisse">Caisse</option>
+                    <option value="banque">Banque</option>
+                    <option value="od">Opération diverse</option>
+                </select>
+            </div>
+
+            <div id="tblo">
+                <!-- Table will be injected here -->
+            </div>
+
+            <div id="feedback">
+                <p id="rep"></p>
+            </div>
+
+            <!-- Modal for Solution -->
+            <div id="solutionModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Solution</h2>
+                    <div id="solution-content">
+                        <!-- Solution details will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="partie_right">
+            <img id="image" src="./img/1.jpg" alt="Document comptable">
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

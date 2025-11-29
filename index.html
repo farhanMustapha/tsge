@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Quiz Comptabilité</title>
+    <link rel="stylesheet" href="qcm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .auth-tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+        }
+
+        .error-msg {
+            color: var(--error-color);
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <h1 style="text-align: center; color: var(--primary-color);">Quiz Compta</h1>
+
+        <div class="auth-tabs">
+            <div class="auth-tab active" onclick="switchTab('login')">Connexion</div>
+            <div class="auth-tab" onclick="switchTab('signup')">Inscription</div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form">
+            <div class="error-msg" id="login-error"></div>
+            <div class="form-group">
+                <label>Email ou Téléphone</label>
+                <input type="text" id="login-id" placeholder="Ex: user@email.com ou 0612345678">
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="login-pass" placeholder="Votre mot de passe">
+            </div>
+            <button onclick="handleLogin()">Se connecter</button>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signup-form" style="display: none;">
+            <div class="error-msg" id="signup-error"></div>
+            <div class="form-group">
+                <label>Nom complet</label>
+                <input type="text" id="signup-name" placeholder="Votre nom">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="signup-email" placeholder="votre@email.com">
+            </div>
+            <div class="form-group">
+                <label>Téléphone</label>
+                <input type="tel" id="signup-phone" placeholder="0612345678">
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="signup-pass" placeholder="Choisissez un mot de passe">
+            </div>
+            <button onclick="handleSignup()">Créer un compte</button>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Check if already logged in
+        if (getCurrentUser()) {
+            window.location.href = 'qcm.html';
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            if (tab === 'login') {
+                document.querySelectorAll('.auth-tab')[0].classList.add('active');
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('signup-form').style.display = 'none';
+            } else {
+                document.querySelectorAll('.auth-tab')[1].classList.add('active');
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('signup-form').style.display = 'block';
+            }
+        }
+
+        function handleLogin() {
+            const id = document.getElementById('login-id').value;
+            const pass = document.getElementById('login-pass').value;
+
+            if (!id || !pass) {
+                showError('login', 'Veuillez remplir tous les champs.');
+                return;
+            }
+
+            const result = loginUser(id, pass);
+            if (result.success) {
+                window.location.href = 'qcm.html';
+            } else {
+                showError('login', result.message);
+            }
+        }
+
+        function handleSignup() {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const phone = document.getElementById('signup-phone').value;
+            const pass = document.getElementById('signup-pass').value;
+
+            if (!name || !email || !phone || !pass) {
+                showError('signup', 'Veuillez remplir tous les champs.');
+                return;
+            }
+
+            const result = registerUser(name, email, pass, phone);
+            if (result.success) {
+                window.location.href = 'qcm.html';
+            } else {
+                showError('signup', result.message);
+            }
+        }
+
+        function showError(form, msg) {
+            const el = document.getElementById(form + '-error');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,341 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #357abd;
+    --background-color: #f0f2f5;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --border-color: #e1e4e8;
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 80px;
+    /* Space for fixed navbar */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--card-background);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#user-name {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.nav-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    margin: 0;
+    flex: initial;
+    /* Override flex: 1 from button rule */
+}
+
+.logout-btn {
+    background-color: var(--error-color);
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+.reset-btn {
+    background-color: #f39c12;
+}
+
+.reset-btn:hover {
+    background-color: #d35400;
+}
+
+/* Main Page Layout */
+.main_page {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--card-background);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    max-width: 1200px;
+    width: 95%;
+    margin: 20px;
+}
+
+.partie_left {
+    flex: 1;
+    padding: 40px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.partie_right {
+    flex: 1;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-width: 300px;
+    border-left: 1px solid var(--border-color);
+}
+
+#image {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    object-fit: contain;
+}
+
+h1 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+#qst {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+    color: #444;
+}
+
+/* Form Elements */
+select,
+input[type=text],
+input[type=number] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+select:focus,
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    text-align: left;
+    padding: 10px;
+    color: #666;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+td {
+    padding: 8px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s;
+    flex: 1;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button#valider {
+    background-color: var(--success-color);
+}
+
+button#valider:hover {
+    background-color: #27ae60;
+}
+
+button#show-solution {
+    background-color: #9b59b6;
+    margin-left: 10px;
+}
+
+button#show-solution:hover {
+    background-color: #8e44ad;
+}
+
+#rep {
+    font-weight: bold;
+    text-align: center;
+    min-height: 1.5em;
+    margin-top: 10px;
+}
+
+.correct {
+    color: var(--success-color);
+}
+
+.incorrect {
+    color: var(--error-color);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    /* Higher than navbar */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    width: 80%;
+    max-width: 600px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.modal h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.solution-details {
+    margin-top: 20px;
+}
+
+.solution-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.solution-row:last-child {
+    border-bottom: none;
+}
+
+.solution-label {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main_page {
+        flex-direction: column-reverse;
+    }
+
+    .partie_right {
+        border-left: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
