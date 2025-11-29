@@ -260,4 +260,54 @@ function showEndGame() {
 }
 
 // Initialize
-window.onload = initGame;
+window.onload = function () {
+    initGame();
+    setupSearch();
+};
+
+function setupSearch() {
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    searchInput.addEventListener('input', function (e) {
+        const query = e.target.value.toLowerCase();
+
+        if (query.length < 2) {
+            searchResults.style.display = 'none';
+            return;
+        }
+
+        const matches = quizs.map((quiz, index) => ({ index, quiz }))
+            .filter(item => item.quiz.question.toLowerCase().includes(query));
+
+        if (matches.length > 0) {
+            searchResults.innerHTML = matches.map(item => `
+                <div class="search-item" onclick="jumpToQuestion(${item.index})">
+                    ${item.quiz.question}
+                </div>
+            `).join('');
+            searchResults.style.display = 'block';
+        } else {
+            searchResults.innerHTML = '<div class="search-item" style="cursor: default; color: #999;">Aucun résultat</div>';
+            searchResults.style.display = 'block';
+        }
+    });
+
+    // Close search when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.style.display = 'none';
+        }
+    });
+}
+
+function jumpToQuestion(index) {
+    currentQuestionIndex = index;
+    loadQuestion();
+
+    // Clear search
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    searchInput.value = '';
+    searchResults.style.display = 'none';
+}
