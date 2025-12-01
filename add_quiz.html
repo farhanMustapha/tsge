@@ -43,6 +43,13 @@
 <body>
     <nav class="navbar">
         <div class="nav-brand">Quiz Compta</div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
         <div class="nav-user">
             <button onclick="window.location.href='qcm.html'" class="nav-btn">Retour au Quiz</button>
         </div>
@@ -100,6 +107,14 @@
     </div>
 
     <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navUser = document.querySelector('.nav-user');
+            const hamburger = document.querySelector('.hamburger');
+            navUser.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
         function saveQuiz() {
             const question = document.getElementById('question').value;
             const journal = document.getElementById('journal').value;
