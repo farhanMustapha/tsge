@@ -278,7 +278,19 @@ function setupSearch() {
         }
 
         const matches = quizs.map((quiz, index) => ({ index, quiz }))
-            .filter(item => item.quiz.question.toLowerCase().includes(query));
+            .filter(item => {
+                const q = item.quiz;
+                const textMatch = q.question.toLowerCase().includes(query);
+
+                // Search in accounts
+                const accountMatch = [q.cpt_1, q.cpt_2, q.cpt_3].some(c => c && c.toString().includes(query));
+
+                // Search in amounts
+                const amountMatch = [q.mnt_d1, q.mnt_d2, q.mnt_d3, q.mnt_c1, q.mnt_c2, q.mnt_c3]
+                    .some(m => m && m.toString().includes(query));
+
+                return textMatch || accountMatch || amountMatch;
+            });
 
         if (matches.length > 0) {
             searchResults.innerHTML = matches.map(item => `

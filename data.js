@@ -1,6 +1,6 @@
 let quizs = [
     {
-        question: "Impression d'un catalogue des produit ,chez imprimerie AL ANWAR à 2870,40 dh dont tva 20%",
+        question: "1-Impression d'un catalogue des produit ,chez imprimerie AL ANWAR à 2870,40 dh dont tva 20%",
         journal: "achat",
         cpt_1: "6111",
         cpt_2: "3455",
@@ -14,7 +14,7 @@ let quizs = [
         facture: "./img/0.PNG"
     },
     {
-        question: "Achat de 4 impriment 1 scanaire,5 pc  dont tva 20%",
+        question: "2-Achat de 4 impriment 1 scanaire,5 pc  dont tva 20%",
         journal: "achat",
         cpt_1: "2222",
         cpt_2: "4411",
@@ -28,7 +28,7 @@ let quizs = [
         facture: "./img/1.PNG"
     },
     {
-        question: "Achat de 4 armoire en allminum ,30 chaises et 5 bureau, dont tva 20%",
+        question: "3-Achat de 4 armoire en allminum ,30 chaises et 5 bureau, dont tva 20%",
         journal: "achat",
         cpt_1: "2222",
         cpt_2: "3455",
@@ -42,7 +42,7 @@ let quizs = [
         facture: "./img/1.PNG"
     },
     {
-        question: "frais de mise en services les pc et les imprimante instalation et formatage,dont tva 0% il s'agit d'un autoentrepreneur ",
+        question: "4-frais de mise en services les pc et les imprimante instalation et formatage,dont tva 0% il s'agit d'un autoentrepreneur ",
         journal: "achat",
         cpt_1: "6125",
         cpt_2: "3455",
@@ -56,7 +56,7 @@ let quizs = [
         facture: "./img/2.PNG"
     },
     {
-        question: "Réglement facture de l'eau et electricité 1500 dh dont tva 7%",
+        question: "5-Réglement facture de l'eau et electricité 1500 dh dont tva 7%",
         journal: "achat",
         cpt_1: "6125",
         cpt_2: "3455",
